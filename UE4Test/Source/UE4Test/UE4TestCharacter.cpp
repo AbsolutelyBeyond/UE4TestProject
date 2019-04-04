@@ -8,11 +8,15 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "MyCharacterMovementComponent.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUE4TestCharacter
 
-AUE4TestCharacter::AUE4TestCharacter()
+AUE4TestCharacter::AUE4TestCharacter(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer
+		.SetDefaultSubobjectClass<UMyCharacterMovementComponent>(
+			CharacterMovementComponentName))
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -51,7 +55,17 @@ void AUE4TestCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetCharacterMovement()->SetMovementMode(MOVE_Flying);
+	//GetCharacterMovement()->SetMovementMode(MOVE_Flying);
+}
+
+void AUE4TestCharacter::MoveBlockedBy(const FHitResult& Impact)
+{
+	UE_LOG(LogTemp, Warning, TEXT("MoveBlockedBy"));
+
+	if (this->HasAuthority())
+	{
+		GetCharacterMovement()->SetMovementMode(MOVE_Flying);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////

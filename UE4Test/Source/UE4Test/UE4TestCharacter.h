@@ -20,9 +20,12 @@ class AUE4TestCharacter : public ACharacter
 	class UCameraComponent* FollowCamera;
 
 public:
-	AUE4TestCharacter();
+	AUE4TestCharacter(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	void BeginPlay() override;
+
+	void MoveBlockedBy(const FHitResult& Impact) override;
+
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
