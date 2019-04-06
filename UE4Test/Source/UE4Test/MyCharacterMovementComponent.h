@@ -17,6 +17,8 @@ class UE4TEST_API UMyCharacterMovementComponent
 
 public:
 
-	FVector ComputeSlideVector(const FVector& Delta, const float Time, const FVector& Normal, const FHitResult& Hit) const override;
+	void PhysFlying(float deltaTime, int32 Iterations) override;
+	//FVector ComputeSlideVector(const FVector& Delta, const float Time, const FVector& Normal, const FHitResult& Hit) const override;
+	float SlideAlongSurface(const FVector& Delta, float Time, const FVector& Normal, FHitResult& Hit, bool bHandleImpact) override;
 	
 };

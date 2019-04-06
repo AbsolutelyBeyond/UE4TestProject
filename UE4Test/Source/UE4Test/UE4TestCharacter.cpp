@@ -60,7 +60,7 @@ void AUE4TestCharacter::BeginPlay()
 
 void AUE4TestCharacter::MoveBlockedBy(const FHitResult& Impact)
 {
-	UE_LOG(LogTemp, Warning, TEXT("MoveBlockedBy"));
+	//UE_LOG(LogTemp, Warning, TEXT("MoveBlockedBy"));
 
 	if (this->HasAuthority())
 	{
@@ -105,12 +105,12 @@ void AUE4TestCharacter::OnResetVR()
 
 void AUE4TestCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
-		Jump();
+	Jump();
 }
 
 void AUE4TestCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
-		StopJumping();
+	StopJumping();
 }
 
 void AUE4TestCharacter::TurnAtRate(float Rate)
